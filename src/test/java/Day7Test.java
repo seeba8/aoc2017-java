@@ -50,4 +50,55 @@ public class Day7Test {
         assertTrue("ugml,fwft".contains(p.getChildren().get(0).getName()));
         assertTrue("ugml,fwft".contains(p.getChildren().get(1).getName()));
     }
+
+    @Test
+    public void testGetCollectiveWeight() {
+        Map<String, String> programs = new HashMap<>();
+        programs.put("ugml", "(68) -> gyxo, ebii");
+        programs.put("gyxo", "(61)");
+        programs.put("ebii", "(61)");
+        programs.put("fwft", "(72)");
+        programs.put("tknk", "(41) -> ugml, fwft");
+        Program p = new Program(programs, "tknk");
+        assertEquals(303, p.getWeight(true));
+    }
+
+    @Test
+    public void testGetUnbalancedValue() {
+        Map<String, String> programs = new HashMap<>();
+        programs.put("pbga", "(66)");
+        programs.put("xhth", "(57)");
+        programs.put("ebii", "(61)");
+        programs.put("havc", "(66)");
+        programs.put("ktlj", "(57)");
+        programs.put("fwft", "(72) -> ktlj, cntj, xhth");
+        programs.put("qoyq", "(66)");
+        programs.put("padx", "(45) -> pbga, havc, qoyq");
+        programs.put("tknk", "(41) -> ugml, padx, fwft");
+        programs.put("jptl", "(61)");
+        programs.put("ugml", "(68) -> gyxo, ebii, jptl");
+        programs.put("gyxo", "(61)");
+        programs.put("cntj", "(57)");
+        Program p = new Program(programs, "tknk");
+        assertEquals(60, p.getCorrectWeightOfUnbalancedProgram());
+    }
+    @Test
+    public void testGetUnbalancedValueAlternative() {
+        Map<String, String> programs = new HashMap<>();
+        programs.put("pbga", "(66)");
+        programs.put("xhth", "(57)");
+        programs.put("ebii", "(61)");
+        programs.put("havc", "(66)");
+        programs.put("ktlj", "(57)");
+        programs.put("fwft", "(72) -> ktlj, cntj, xhth");
+        programs.put("qoyq", "(66)");
+        programs.put("padx", "(45) -> pbga, havc, qoyq");
+        programs.put("tknk", "(41) -> ugml, padx, fwft");
+        programs.put("jptl", "(61)");
+        programs.put("ugml", "(50) -> gyxo, ebii, jptl");
+        programs.put("gyxo", "(61)");
+        programs.put("cntj", "(57)");
+        Program p = new Program(programs, "tknk");
+        assertEquals(60, p.getCorrectWeightOfUnbalancedProgram());
+    }
 }
