@@ -101,6 +101,12 @@ public class Firewall {
 
         System.out.println("delay = " + delay);
     }
-
+/*
+ * Make scanners an array of integers. use -1 or anything for lanes where no scanner is
+ * 0 1 0 1 = abs((x % 2) - 1)
+ * 0 1 2 1 0 1 2 1 = abs((x % 4) - 1)
+ * 0 1 2 3 2 1 0 = abs(((x+2) % 6) - 2)
+ * 0 1 2 3 4 3 2 1 0 = abs(((x+3)%8) - 3)
+ */
 
 }
