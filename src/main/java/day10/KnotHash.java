@@ -57,9 +57,6 @@ public class KnotHash {
     }
 
     public String fullHash() {
-        for (int i = 0; i < 64; i++) {
-            hash();
-        }
         int[] dense = getDenseHash();
         return Arrays.stream(dense)
                 .mapToObj(i -> String.format("%02x", i))
@@ -80,7 +77,10 @@ public class KnotHash {
         return new KnotHash(vals.stream().mapToInt(Integer::intValue).toArray());
     }
 
-    private int[] getDenseHash() {
+    public int[] getDenseHash() {
+        for (int i = 0; i < 64; i++) {
+            hash();
+        }
         int[] dense = new int[16];
         for (int i = 0; i < 16; i++) {
             dense[i] = numbers[16 * i];
